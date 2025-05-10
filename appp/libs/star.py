@@ -113,13 +113,13 @@ for sender, text in st.session_state.history:
             text,
             is_user=True,
             avatar_style=None,    # e.g. DiceBear “micah” style
-            avatar_url="https://ibb.co/bTv5twH",
+            avatar_url="/static/user.png",
         )
     else:
         message(
             text,
             avatar_style=None,  # e.g. DiceBear “pixel-art-neutral”
-            avatar_url="https://ibb.co/gFbm8mqq",
+            avatar_url="/static/bot.png",
         )
 
 # Suggestions for improvement:
