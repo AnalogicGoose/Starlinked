@@ -109,18 +109,11 @@ if st.button("Mandar") and user_input:
 # Display chat history
 for sender, text in st.session_state.history:
     if sender == "user":
-        message(
-            text,
-            is_user=True,
-            avatar_style=None,    # e.g. DiceBear “micah” style
-            avatar_url="/static/user.png",
-        )
+        with st.chat_message("user", avatar="/static/user.png"):
+            st.write(text)
     else:
-        message(
-            text,
-            avatar_style=None,  # e.g. DiceBear “pixel-art-neutral”
-            avatar_url="/static/bot.png",
-        )
+        with st.chat_message("assistant", avatar="/static/bot.png"):
+            st.write(text)
 
 # Suggestions for improvement:
 # - Embed local orbital-mechanics calculations (e.g. via Astropy) to reduce API calls.
