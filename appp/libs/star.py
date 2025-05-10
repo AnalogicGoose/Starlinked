@@ -13,7 +13,7 @@ st.set_page_config(
 )
 
 # Load OpenAI API key
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = st.secrets["OPENAIAPI_KEY"]
 
 # Custom CSS for background and shooting stars
 st.markdown(
