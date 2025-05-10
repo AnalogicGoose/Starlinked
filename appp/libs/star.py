@@ -1,3 +1,4 @@
+import base64
 import streamlit as st
 import openai
 from streamlit_chat import message
@@ -13,8 +14,15 @@ st.set_page_config(
 )
 
 # Load OpenAI API key
-openai.api_key = st.secrets["OPENAIAPI_KEY"]
-
+encoded_key = os.getenv("OPENAIAPI_KEY_B64", st.secrets.get("OPENAIAPI_KEY", ""))
+if not encoded_key:
+    st.error("No se encontró la variable OPENAIAPI_KEY_B64 ni OPENAIAPI_KEY en secrets.")
+    st.stop()
+try:
+    openai.api_key = base64.b64decode(encoded_key).decode("utf-8")
+except Exception as e:
+    st.error(f"Error al decodificar la API key: {e}")
+    st.stop()
 # Custom CSS for background and shooting stars
 st.markdown(
     """
@@ -85,16 +93,18 @@ user_input = st.text_input("Tu pregunta:", st.session_state.user_input)
 if st.button("Mandar") and user_input:
     st.session_state.history.append(("user", user_input))
     with st.spinner("Thinking..."):
-        # Use the new ChatCompletion API
         response = openai.chat.completions.create(
             model="gpt-4o",
-            messages=[{"role": "user", "content": user_input}],
-            max_tokens=500,
-            temperature=0
+            messages=[{"role": "user", "content": user_input}]
         )
-        answer = response.choices[0].message["content"].strip()
-        st.session_state.history.append(("ai", answer))
-        st.session_state.user_input = ""
+
+        if response.choices and response.choices[0].message:
+            answer = response.choices[0].message.content.strip()
+        else:
+            answer = "No se recibió respuesta válida."
+
+        st.session_state.history.append(("assistant", answer))
+
 
 # Display chat history
 for sender, text in st.session_state.history:

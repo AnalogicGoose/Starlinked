@@ -29,6 +29,18 @@ streaming messaging and interprocess communication.
 For more information see the official page at https://arrow.apache.org
 """
 
+
+# start delvewheel patch
+def _delvewheel_patch_1_10_0():
+    import os
+    if os.path.isdir(libs_dir := os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, 'pyarrow.libs'))):
+        os.add_dll_directory(libs_dir)
+
+
+_delvewheel_patch_1_10_0()
+del _delvewheel_patch_1_10_0
+# end delvewheel patch
+
 import gc as _gc
 import importlib as _importlib
 import os as _os

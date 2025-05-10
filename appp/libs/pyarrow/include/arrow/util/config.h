@@ -25,13 +25,13 @@
 #define ARROW_SO_VERSION "2000"
 #define ARROW_FULL_SO_VERSION "2000.0.0"
 
-#define ARROW_CXX_COMPILER_ID "AppleClang"
-#define ARROW_CXX_COMPILER_VERSION "15.0.0.15000309"
-#define ARROW_CXX_COMPILER_FLAGS " -fno-aligned-new  -Qunused-arguments -fcolor-diagnostics  -Wall -Wno-unknown-warning-option -Wno-pass-failed "
+#define ARROW_CXX_COMPILER_ID "MSVC"
+#define ARROW_CXX_COMPILER_VERSION "19.43.34809.0"
+#define ARROW_CXX_COMPILER_FLAGS " /DWIN32 /D_WINDOWS /EHsc /D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING  /EHsc /wd5105 /bigobj /utf-8 /W3 /wd4800 /wd4996 /wd4065  /MP"
 
 #define ARROW_BUILD_TYPE "RELEASE"
 
-#define ARROW_PACKAGE_KIND "python-wheel-macos"
+#define ARROW_PACKAGE_KIND "python-wheel-windows"
 
 #define ARROW_COMPUTE
 #define ARROW_CSV
@@ -49,13 +49,13 @@
 #define ARROW_PARQUET
 #define ARROW_SUBSTRAIT
 
-#define ARROW_AZURE
+/* #undef ARROW_AZURE */
 #define ARROW_ENABLE_THREADING
 #define ARROW_GCS
 #define ARROW_HDFS
 #define ARROW_S3
 /* #undef ARROW_USE_GLOG */
-#define ARROW_USE_NATIVE_INT128
+/* #undef ARROW_USE_NATIVE_INT128 */
 #define ARROW_WITH_BROTLI
 #define ARROW_WITH_BZ2
 #define ARROW_WITH_LZ4
