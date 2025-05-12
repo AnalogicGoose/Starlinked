@@ -120,4 +120,3 @@ for sender, text in st.session_state.history:
 # - Cache responses with st.cache_data to speed up repeated queries.
 # - Add interactive orbit visualizations with Plotly or matplotlib.
 # - Provide dropdowns for planet selection and parameter presets.
-# - Explore voice I/O with SpeechRecognition and st.audio components.
