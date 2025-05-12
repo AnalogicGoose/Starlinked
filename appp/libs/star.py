@@ -109,10 +109,10 @@ if st.button("Mandar") and user_input:
 # Display chat history
 for sender, text in st.session_state.history:
     if sender == "user":
-        with st.chat_message("user", avatar="https://ibb.co/gFbm8mqq"):
+        with st.chat_message("user", avatar="👤"):
             st.write(text)
     else:
-        with st.chat_message("assistant", avatar="https://ibb.co/gFbm8mqq"):
+        with st.chat_message("assistant", avatar="👾"):
             st.write(text)
 
 # Suggestions for improvement:
